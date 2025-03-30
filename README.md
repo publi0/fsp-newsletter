@@ -1,6 +1,10 @@
 # Folha de São Paulo Newsletter
 
 A simple automated service that scrapes the "Folha de São Paulo" newspaper website and sends a formatted newsletter via email.
+<p align="center">
+<img src="https://github.com/user-attachments/assets/8df838be-cf1b-4243-adda-4e929dbd9a2d">
+</p>
+
 
 ## Overview
 
