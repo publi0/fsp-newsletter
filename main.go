@@ -30,6 +30,10 @@ func main() {
 	senderEmail := "newsletter@alerts.publio.dev"
 	recipientEmail := "felipe@publio.dev"
 
+	if resendAPIKey == "" {
+		log.Fatal("API_KEY environment variable is not set")
+	}
+
 	if len(os.Args) > 1 {
 		if os.Args[1] == "send" {
 			fmt.Println("Sending newsletter...")
@@ -128,7 +132,7 @@ func scrapeNewsData() (NewsletterData, error) {
 
 func sendNewsletter(data NewsletterData, apiKey, sender, recipient string) error {
 	fmt.Println("Building newsletter...")
-	t, err := template.New("newsletter").ParseFiles("template.html")
+	t, err := template.ParseFiles("./template.html")
 	if err != nil {
 		return err
 	}

@@ -1,0 +1,131 @@
+<!doctype html>
+<html>
+    <head>
+        <meta charset="UTF-8" />
+        <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+        <title>Folha de São Paulo - Notícias do Dia</title>
+        <style>
+            body {
+                font-family: Georgia, serif;
+                line-height: 1.5;
+                color: #222;
+                max-width: 700px;
+                margin: 0 auto;
+                padding: 20px;
+                background-color: #fcfcfc;
+            }
+            .header {
+                text-align: center;
+                margin-bottom: 25px;
+                border-bottom: 1px solid #ddd;
+                padding-bottom: 15px;
+            }
+            .header h1 {
+                margin-bottom: 5px;
+            }
+            .header h2 {
+                font-weight: normal;
+                font-size: 18px;
+                margin-top: 0;
+                color: #555;
+            }
+            .date {
+                color: #666;
+                text-align: center;
+                margin-bottom: 30px;
+                font-size: 15px;
+            }
+            .cover {
+                text-align: center;
+                margin-bottom: 30px;
+            }
+            .cover img {
+                max-width: 100%;
+                height: auto;
+                border: 1px solid #eee;
+            }
+            .group {
+                margin-bottom: 30px;
+                padding-bottom: 15px;
+            }
+            .group-title {
+                font-size: 20px;
+                color: #333;
+                margin-bottom: 15px;
+                padding-bottom: 8px;
+                border-bottom: 1px solid #ddd;
+            }
+            .article {
+                margin-bottom: 20px;
+                padding: 0 0 0 10px;
+                border-left: 2px solid #ddd;
+            }
+            .article-title {
+                color: #222;
+                text-decoration: none;
+                font-weight: bold;
+                font-size: 16px;
+                line-height: 1.4;
+                display: block;
+                margin-bottom: 5px;
+            }
+            .article-title:hover {
+                text-decoration: underline;
+            }
+            .article-author {
+                font-style: italic;
+                color: #777;
+                font-size: 14px;
+                margin-top: 3px;
+            }
+            .footer {
+                margin-top: 40px;
+                text-align: center;
+                font-size: 12px;
+                color: #999;
+                padding-top: 20px;
+                border-top: 1px solid #eee;
+            }
+        </style>
+    </head>
+    <body>
+        <div class="header">
+            <h1>Folha de São Paulo</h1>
+            <h2>Notícias do Dia</h2>
+        </div>
+
+        <div class="date">{{.Date}}</div>
+
+        {{if .CoverImgURL}}
+        <div class="cover">
+            <img
+                src="{{.CoverImgURL}}"
+                alt="Capa do dia - Folha de São Paulo"
+            />
+        </div>
+        {{end}} {{range $groupName, $articles := .Groups}}
+        <div class="group">
+            <h3 class="group-title">{{$groupName}}</h3>
+            {{range $articles}}
+            <div class="article">
+                <a class="article-title" href="{{.Link}}">{{.Title}}</a>
+                {{if .Author}}
+                <div class="article-author">Por: {{.Author}}</div>
+                {{end}}
+            </div>
+            {{end}}
+        </div>
+        {{end}}
+
+        <div class="footer">
+            <p>Este é um serviço automatizado de envio de newsletter.</p>
+            <p>
+                Fonte: Folha de São Paulo - https://www1.folha.uol.com.br/fsp/
+            </p>
+            <p>
+                &copy; {{.Date}} - Todos os direitos reservados à Folha de São
+                Paulo
+            </p>
+        </div>
+    </body>
+</html>
